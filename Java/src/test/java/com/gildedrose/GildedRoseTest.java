@@ -98,6 +98,13 @@ class GildedRoseTest {
         assertEquals(5, updated.sellIn);
     }
 
+    /*
+     * Missing:
+     * - item initialized with 55 quality should be updated to 50 instead of decreased to 54
+     * - also merely "Sulfuras" should be recognized as legendary item ?
+     * - "Backstage passes" different from "TAFKAL80ETC" concert should be supported
+     */
+
     private static Item updateToNextDay(Item item) {
         GildedRose app = new GildedRose(new Item[] {item});
         app.updateQuality();
