@@ -50,6 +50,36 @@ class GildedRoseTest {
         assertEquals(-1, updated.sellIn);
     }
 
+    @Test
+    void onceTheSellByDateHasPassedQualityDegradesTwiceAsFast() {
+        Item updated = updateToNextDay(new Item("Item name", -3, 10));
+        assertEquals(8, updated.quality);
+    }
+
+    @Test
+    void agedBrieIncreasesInQualityTheOlderItGets() {
+        Item updated = updateToNextDay(new Item("Aged Brie", 5, 10));
+        assertEquals(11, updated.quality);
+    }
+
+    @Test
+    void qualityOfAnItemIsNeverMoreThan50() {
+        Item updated = updateToNextDay(new Item("Aged Brie", 5, 50));
+        assertEquals(50, updated.quality);
+    }
+
+    @Test
+    void sulfurasNeverDecreasesInQuality() {
+        Item updated = updateToNextDay(new Item("Sulfuras, Hand of Ragnaros", 2, 100));
+        assertEquals(100, updated.quality);
+    }
+
+    @Test
+    void sulfurasNeverHasToBeSold() {
+        Item updated = updateToNextDay(new Item("Sulfuras, Hand of Ragnaros", 2, 100));
+        assertEquals(2, updated.sellIn);
+    }
+
     private static Item updateToNextDay(Item item) {
         GildedRose app = new GildedRose(new Item[] {item});
         app.updateQuality();
