@@ -81,6 +81,13 @@ class GildedRoseTest {
     }
 
     @Test
+    void backstagePassesQualityIncreaseBy1WhenThereAreMoreThen10Days() {
+        Item updated = updateToNextDay(new Item("Backstage passes to a TAFKAL80ETC concert", 11, 20));
+        assertEquals(10, updated.sellIn);
+        assertEquals(21, updated.quality);
+    }
+
+    @Test
     void backstagePassesQualityIncreasesBy2WhenThereAre10DaysOrLessUnto6Days() {
         Item backstagePass = new Item("Backstage passes to a TAFKAL80ETC concert", 10, 20);
 
