@@ -80,6 +80,24 @@ class GildedRoseTest {
         assertEquals(2, updated.sellIn);
     }
 
+    @Test
+    void backstagePassesQualityIncreasesBy2WhenThereAre10DaysOrLessUnto6Days() {
+        Item backstagePass = new Item("Backstage passes to a TAFKAL80ETC concert", 10, 20);
+
+        Item updated = updateToNextDay(backstagePass);
+        assertEquals(22, updated.quality);
+        assertEquals(9, updated.sellIn);
+
+        updated = updateToNextDay(updated);
+        assertEquals(24, updated.quality);
+
+        updated = updateToNextDay(updated);
+        updated = updateToNextDay(updated);
+        updated = updateToNextDay(updated);
+        assertEquals(30, updated.quality);
+        assertEquals(5, updated.sellIn);
+    }
+
     private static Item updateToNextDay(Item item) {
         GildedRose app = new GildedRose(new Item[] {item});
         app.updateQuality();
