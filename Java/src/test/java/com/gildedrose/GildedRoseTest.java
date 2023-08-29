@@ -21,21 +21,21 @@ class GildedRoseTest {
         GildedRose app = new GildedRose(items);
 
         assertEquals(1, app.items.length);
-        Item appItem = app.items[0];
-        assertEquals("Item name", appItem.name);
-        assertEquals(3, appItem.quality);
-        assertEquals(4, appItem.sellIn);
+        Item firstItem = app.items[0];
+        assertEquals("Item name", firstItem.name);
+        assertEquals(4, firstItem.sellIn);
+        assertEquals(3, firstItem.quality);
     }
 
     @Test
-    void qualityAndSellInDecreaseByOneEveryday() {
+    void qualityAndSellIsDecreasedByOneEveryday() {
         Item updated = updateToNextDay(new Item("Item name", 4, 3));
-        assertEquals(2, updated.quality);
         assertEquals(3, updated.sellIn);
+        assertEquals(2, updated.quality);
 
         updated = updateToNextDay(updated);
-        assertEquals(1, updated.quality);
         assertEquals(2, updated.sellIn);
+        assertEquals(1, updated.quality);
     }
 
     @Test
@@ -85,17 +85,17 @@ class GildedRoseTest {
         Item backstagePass = new Item("Backstage passes to a TAFKAL80ETC concert", 10, 20);
 
         Item updated = updateToNextDay(backstagePass);
-        assertEquals(22, updated.quality);
         assertEquals(9, updated.sellIn);
+        assertEquals(20 + 2, updated.quality);
 
         updated = updateToNextDay(updated);
-        assertEquals(24, updated.quality);
+        assertEquals(20 + 2 + 2, updated.quality);
 
         updated = updateToNextDay(updated);
         updated = updateToNextDay(updated);
         updated = updateToNextDay(updated);
-        assertEquals(30, updated.quality);
         assertEquals(5, updated.sellIn);
+        assertEquals(20 + 2 + 2 + 2 + 2 + 2, updated.quality);
     }
 
     /*
