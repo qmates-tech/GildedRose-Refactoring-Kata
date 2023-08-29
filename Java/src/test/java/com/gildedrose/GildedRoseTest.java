@@ -132,9 +132,10 @@ class GildedRoseTest {
 
     /*
      * Missing:
-     * - item initialized with 55 quality should be updated to 50 instead of decreased to 54
-     * - also merely "Sulfuras" should be recognized as legendary item ?
      * - "Backstage passes" different from "TAFKAL80ETC" concert should be supported
+     * - quality limits: item initialized with 55 quality should be updated to 50 instead of decreased to 54
+     * - quality limits: what's happened with negative quality?
+     * - also merely "Sulfuras" should be recognized as legendary item ?
      */
 
     private static Item updateToNextDay(Item item) {
