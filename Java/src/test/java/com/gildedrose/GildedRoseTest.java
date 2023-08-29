@@ -105,6 +105,31 @@ class GildedRoseTest {
         assertEquals(20 + 2 + 2 + 2 + 2 + 2, updated.quality);
     }
 
+    @Test
+    void backstagePassesQualityIncreasesBy3WhenThereAre5DaysOrLessUntoTheConcertDate() {
+        Item backstagePass = new Item("Backstage passes to a TAFKAL80ETC concert", 5, 30);
+
+        Item updated = updateToNextDay(backstagePass);
+        assertEquals(4, updated.sellIn);
+        assertEquals(30 + 3, updated.quality);
+
+        updated = updateToNextDay(updated);
+        assertEquals(30 + 3 + 3, updated.quality);
+
+        updated = updateToNextDay(updated);
+        updated = updateToNextDay(updated);
+        updated = updateToNextDay(updated);
+        assertEquals(0, updated.sellIn);
+        assertEquals(30 + 3 + 3 + 3 + 3 + 3, updated.quality);
+    }
+
+    @Test
+    void backstagePassesQualityDropsTo0AfterTheConcert() {
+        Item updated = updateToNextDay(new Item("Backstage passes to a TAFKAL80ETC concert", 0, 45));
+        assertEquals(-1, updated.sellIn);
+        assertEquals(0, updated.quality);
+    }
+
     /*
      * Missing:
      * - item initialized with 55 quality should be updated to 50 instead of decreased to 54
