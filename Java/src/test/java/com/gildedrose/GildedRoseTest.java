@@ -70,13 +70,13 @@ class GildedRoseTest {
 
     @Test
     void sulfurasNeverDecreasesInQuality() {
-        Item updated = updateToNextDay(new Item("Sulfuras, Hand of Ragnaros", 2, 100));
-        assertEquals(100, updated.quality);
+        Item updated = updateToNextDay(new Item("Sulfuras, Hand of Ragnaros", 2, 40));
+        assertEquals(40, updated.quality);
     }
 
     @Test
     void sulfurasNeverHasToBeSold() {
-        Item updated = updateToNextDay(new Item("Sulfuras, Hand of Ragnaros", 2, 100));
+        Item updated = updateToNextDay(new Item("Sulfuras, Hand of Ragnaros", 2, 40));
         assertEquals(2, updated.sellIn);
     }
 
